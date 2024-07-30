@@ -2,6 +2,7 @@
 # rpcontacts/views.py
 
 """This module provides views to manage the contacts table."""
+from .model import ContactsModel
 
 from PyQt5.QtWidgets import (
     QAbstractItemView,
@@ -18,13 +19,14 @@ class Window(QMainWindow):
     def __init__(self, parent=None):
         """Initializer."""
         # Snip...
-
+        self.contactsModel = ContactsModel()
         self.setupUI()
 
     def setupUI(self):
         """Setup the main window's GUI."""
         # Create the table view widget
         self.table = QTableView()
+        self.table.setModel(self.contactsModel.model)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.resizeColumnsToContents()
         # Create buttons
